@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Jacathon</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="project/css/bootstrap.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="project/css/styles.css" rel="stylesheet">
+                <script type="text/javascript" src="./project/js/jquery.ajax-cross-origin.min.js"></script>
+                <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+	</head>
+	<body>
+        
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>   
+        <script src="./project/js/d3.layout.cloud.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">TT Cloud</a>
+        </div>
+        </div>
+      </div>
+</nav>
+
+<div class="container-fluid">
+      
+      <div class="row row-offcanvas row-offcanvas-left">
+        
+         <div class="col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation">
+           
+            <ul class="nav nav-sidebar">
+              <li class="active"><a href="./index.php">TT Aragon</a></li>
+              <li><a href="./index.php?accion=nacional">TT Nacional</a></li>
+              <li><a href="./index.php?accion=diferencial">TT Diferencial</a></li>
+            </ul>
+          
+        </div><!--/span-->
+        
+        
+
+        
+        <div class="col-sm-9 col-md-10 main">
+          
+          <!--toggle sidebar button-->
+          <p class="visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
+          </p>
+          
+        <h1 class="page-header">
+            TT Cloud
+
+          </h1>
+          <div id="cloud" class="text-center"></div>          
+          <div id="test"></div>
+         
+          
+  <script>  
+  var i = 80;
+  var fill = d3.scale.category20();
+
+  d3.layout.cloud().size([300, 300])
+      .words([ ##trendings## ].map(function(d) {
+        return {text: d, size:  (i = i-7)};
+      }))
+      .rotate(function() { return ~~(Math.random() * 2) * 90; })
+      .font("Impact")
+      .fontSize(function(d) { return d.size; })
+      .on("end", draw)
+      .start();
+
+  function draw(words) {
+    d3.select("#cloud").append("svg")
+        .attr("width", 300)
+        .attr("height", 300)
+      .append("g")
+        .attr("transform", "translate(150,150)")
+      .selectAll("text")
+        .data(words)
+      .enter().append("text")
+        .style("font-size", function(d) { return d.size + "px"; })
+        .style("font-family", "Impact")
+        .style("fill", function(d, i) { return fill(i); })
+        .attr("text-anchor", "middle")
+        .attr("transform", function(d) {
+          return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+        })
+        .text(function(d) { return d.text; });
+  }
+
+</script> 
+          <hr>
+
+          <h2 class="sub-header">Section title</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>TT</th>
+                </tr>
+              </thead>
+              <tbody>
+		##repetir##
+                <tr>
+                  <td>##posicion##</td>
+                  <td>##name##</td>
+                </tr>
+		##repetir##
+              </tbody>
+            </table>
+          </div>
+
+      </div><!--/row-->
+	</div>
+</div><!--/.container-->
+
+<footer>
+  <p class="pull-right">©2014 Company</p>
+</footer>
+        
+	<!-- script references -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="project/js/bootstrap.min.js"></script>
+		<script src="project/js/scripts.js"></script>
+	</body>
+</html>
